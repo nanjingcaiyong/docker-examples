@@ -1,0 +1,8 @@
+version: '3'
+services:
+  node-app-prd:
+    build: 
+      context: .
+      dockerfile: Dockerfile.prd
+    ports:
+      - "8080:8080"

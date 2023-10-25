@@ -1,0 +1,25 @@
+# 基础镜像
+FROM node:16-alpine3.15
+
+# 和cd命令一样，进入工作目录（在镜像中创建一个文件夹存放应用程序代码，这将是你的应用程序工作目录）
+WORKDIR /app
+
+# 此镜像(node:16-alpine3.15)中 Node.js 和 NPM 都已经安装，所以下一件事对于我们而言是使用 npm 安装你的应用程序的所有依赖。请注意，如果你的 npm 的版本是 4 或者更早的版本，package-lock.json 文件将不会自动生成。
+
+COPY package.json .
+
+RUN npm install
+
+# 
+
+COPY . .
+
+# 暴露端口。容器内应用可使用的端口
+EXPOSE 8080
+
+# 安装 nodemon 全局工具
+RUN npm install -g nodemon
+
+
+# 通过 nodemon 实现热更
+CMD [ "nodemon", "server.js" ]

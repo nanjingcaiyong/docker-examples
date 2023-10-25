@@ -1,6 +1,6 @@
 ## 构建镜像
 ```sh
-docker build ./Dockerfile -t [image:version]
+docker build -f ./Dockerfile -t [image:version] .
 ```
 
 
